@@ -1,0 +1,132 @@
+<!Doctype HTML>
+<HTML>
+    <Head>
+        <Title>Calculator</Title>
+        <style>
+            Body{
+                    background: radial-gradient(circle,#FFFFFF,#CEFFEC);}
+            
+            @font-face{	
+                    font-family: ourFont2;
+                    src: url("Average-Regular.ttf");	
+            }
+
+            @font-face{	
+                font-family: ourFont;
+                src: url("ABeeZee-Regular.ttf");	
+            }
+        </style>    
+    </Head>
+    
+    <Body>
+     <div id="control" style="position: absolute; width: 60%; bottom: 3%; font-family: ourFont; background: white; padding: 1%; box-shadow: 2px 2px 6px grey; border-radius: 5px;">
+
+            <input id="up" type="number" placeholder="UP"  min="0" steps="0" style="width: 15%">
+            <input id="down" type="number" placeholder="DOWN"  min="0" steps="0" style="width: 15%">
+            <input id="left" type="number" placeholder="LEFT"  min="0" steps="0" style="width: 15%">
+            <input id="right" type="number" placeholder="RIGHT"  min="0" steps="0" style="width: 15%">
+            <input id="mass" type="number" placeholder="MASS" value="1"  min="1" steps="1" style="width: 15%">
+            <button style="width: 15%" id="go">Go</button>
+         
+        </div> 
+        <center>
+        <div id="result" style="position: absolute; bottom: 0; right: 0; margin: 0.5%; font-family: ourFont; background: white; padding: 3%; box-shadow: 2px 2px 6px grey; border-radius: 5px; ">
+            <p style="color: red;" id="red"></p>
+            <p style="color: green;" id="green"></p>
+            <p style="color: blue;" id="blue"></p>            
+        </div>  
+            
+            <script>
+var mass = 1;
+var up = 0;
+var down = 0;
+var right = 0;
+var left = 0;
+                
+var xplace = 250;
+var yplace = 250;
+
+var speedX = 0;
+var speedY = 0;                
+
+var xFactor = 0;
+var yFactor = 0;
+                
+                
+                
+document.getElementById("go").addEventListener("click", () =>{
+    
+        xFactor = 0;
+        yFactor = 0;
+    
+    up = parseInt(document.getElementById("up").value);
+    right = parseInt(document.getElementById("right").value);
+    left = parseInt(document.getElementById("left").value);
+    down = parseInt(document.getElementById("down").value);
+    mass = parseInt(document.getElementById("mass").value);
+    
+    if(isNaN(parseInt(up))){ up = 0;}
+    if(isNaN(parseInt(down))){ down = 0;}
+    if(isNaN(parseInt(left))){ left = 0;}  
+    if(isNaN(parseInt(right))){ right = 0;}
+    
+     xplace = 250;
+     yplace = 250;
+    
+    speedX = 0;
+    speedY = 0;
+    
+    xFactor += left/mass;
+    xFactor -= right/mass;
+    
+    yFactor += up/mass;
+    yFactor -= down/mass;
+    
+});
+
+            
+            </script>    
+        <script src="processing.min.js"></script>
+        <script type="application/processing">
+        
+size(500, 500); 
+frameRate(10);
+background(255, 255, 255);
+
+
+
+
+
+
+
+
+
+
+
+draw = function() {
+
+    
+    background(255, 255, 255);
+    
+    speedX += xFactor;
+    speedY += yFactor;
+    
+    strokeWeight(10);
+    stroke(0, 0, 0);
+    point(xplace, yplace);
+    
+    xplace += speedX;
+    yplace += speedY;
+    
+    stroke(0, 0, 255);
+    
+    document.querySelector("#red").textContent ="X: " + xFactor * mass + "N";
+    document.querySelector("#green").textContent = "Y: " + -yFactor * mass+ "N";
+};
+
+
+        </script>
+    	<canvas id="canvas" style=" margin: 2%; border-radius: 5px; box-shadow: 2px 2px 6px grey; "></canvas></center>
+    </Body>
+</HTML>    
+    

@@ -1,0 +1,109 @@
+<!Doctype HTML>
+<HTML>
+    <Head>
+        <Title>Vekki</Title>
+        <style>
+            Body{
+                    background: radial-gradient(circle,#FFFFFF,#CEFFEC);}
+            
+            @font-face{	
+                    font-family: ourFont2;
+                    src: url("Average-Regular.ttf");	
+            }
+
+            @font-face{	
+                font-family: ourFont;
+                src: url("ABeeZee-Regular.ttf");	
+            }
+        </style>    
+    </Head>
+    
+    <Body>
+        <center>
+        <div id="result" style="position: absolute; bottom: 0; right: 0; margin: 0.5%; font-family: ourFont; background: white; padding: 3%; box-shadow: 2px 2px 6px grey; border-radius: 5px; ">
+            <p style="color: red;" id="red"></p>
+            <p style="color: green;" id="green"></p>
+            <p style="color: blue;" id="blue"></p>            
+        </div>
+        <script src="processing.min.js"></script>
+        <script type="application/processing">
+        
+        		size(500, 500); 
+				frameRate(60);
+                var step = 0;
+var x1;
+var y1;
+var x2;
+var y2;
+var Ts;
+var xs;
+var ys;
+var fx;
+var fy;
+var slope;
+
+background(255, 255, 255);
+
+draw= function() {
+    mouseClicked = function(){
+      
+      if(step === 0){
+            background(255, 255, 255);
+            x1 = mouseX;
+            y1 = mouseY;
+            step = 1;
+      }else if(step === 1){
+            x2 = mouseX;
+            y2 = mouseY;
+            
+            stroke(0, 0, 255);
+            strokeWeight(3);
+            line(x1,y1,x2,y2);
+
+            stroke(0, 255, 0);
+            line(x1,y1,x2,y1);
+            
+            if(x1>x2){
+                triangle((x1 + x2)/2, y1 - 5, (x1 + x2)/2, y1 + 5, ((x1 + x2)/2) - 10, y1);
+            }
+            
+           if(x1<x2){
+                triangle((x1 + x2)/2, y1 - 5, (x1 + x2)/2, y1 + 5, ((x1 + x2)/2) + 10, y1);
+            }
+            
+            stroke(255, 0, 0);
+            line(x2,y1,x2,y2);
+            
+            if(y1>y2){
+                triangle(x2 - 5, (y1 + y2)/2, x2 + 5, (y1 + y2)/2, x2, ((y1 + y2)/2) - 10);
+            }
+            
+           if(y1<y2){
+                triangle(x2 - 5, (y1 + y2)/2, x2 + 5, (y1 + y2)/2, x2, ((y1 + y2)/2) + 10);
+            }  
+            
+           // ---------------------------------------
+            
+            Ts = round(dist(x1,y1,x2,y2) * 10) / 100;
+            
+            xs = round(dist(x1,y1,x2,y1) * 100) /1000;
+            ys = round(dist(x1,y1,x1,y2) * 100) /1000;            
+            step = 0;
+      
+      /* println(Ts); 
+       println(xs);
+       println(ys);*/
+       
+       document.querySelector("#blue").textContent ="T: " + Ts + "N";
+       document.querySelector("#red").textContent ="Y: " + ys + "N";
+       document.querySelector("#green").textContent = "X: " +xs + "N";
+       
+    }};
+    
+    
+};        
+        </script>
+    	<canvas id="canvas" style=" margin: 2%; border-radius: 5px; box-shadow: 2px 2px 6px grey; "></canvas></center>
+    </Body>
+</HTML>    
+    

@@ -1,0 +1,40 @@
+Body{
+    
+    background: radial-gradient(circle,#FFFFFF,#CEFFEC);
+}
+
+
+@font-face{	
+    font-family: ourFont2;
+    src: url("Average-Regular.ttf");	
+            }
+@font-face{	
+    font-family: ourFont;
+    src: url("ABeeZee-Regular.ttf");	
+            }
+
+#copyright{
+    font-family: ourFont;
+    font-size: 15px;
+    position: fixed;
+    bottom: 0;
+    right: 45%;
+}
+#v{
+    width: 27%;
+    padding: 0;
+    background: rgb(0,0,0,0);
+    border: 0;
+    position: fixed;
+    left: 10%;
+    top: 20%;
+}
+#vv{
+    width: 27%;
+    padding: 0;
+    background: rgb(0,0,0,0);
+    border: 0;
+    position: fixed;
+    right: 10%;
+    top: 20%;
+}
