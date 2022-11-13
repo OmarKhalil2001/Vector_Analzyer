@@ -4,6 +4,6 @@ final vector and simulate the motion on an object, simulating its acceleration. 
 allows the user to draw vector on a canvas, and then it calculates X and Y components of the Vector and draws 
 them.
 
-The Project was using HTML, CSS, JavaScript, and Processing.Js. I originally built the project to 
+The Project was built using HTML, CSS, JavaScript, and Processing.Js. I originally built the project to 
 compete in the S.T.E.M. contest in my senior year of highschool and it won me the second place. The website mainly 
 uses pythagoras theorem for calculations and Processing.Js for drawings and animation.
